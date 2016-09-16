@@ -1,0 +1,41 @@
+<html ng-app="shopping-cart-demo">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Shopping Cart - Using blockonomics API</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/shopping-cart-demo/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/shopping-cart-demo/static/css/style.css">
+  </head>
+
+  <body>
+<nav class="navbar navbar-fixed-top navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="color: lightgray;">Shopping Cart Demo</a>
+    </div>
+<div class="collapse navbar-collapse" id="navbar-collapse"><!-- Collect the nav links and other content for toggling -->
+        <ul class="nav navbar-nav navbar-right"><!-- Align to the right nav links, forms and other content -->
+          <li>
+<div class="col-md-4 center-block">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary center-block" style="border: none; margin-top:7px;">
+        Order Status
+    </button>
+</div>
+</li>
+        </ul>
+      </div>
+    </ul>
+  </div>
+</nav>
+    <div class="container" ng-view>
+    </div>
+    <script src="/shopping-cart-demo/static/js/jquery.min.js"></script>
+    <script src="/shopping-cart-demo/static/js/bootstrap.js"></script>
+    <script src="/shopping-cart-demo/static/js/angular.js"></script>
+    <script src="/shopping-cart-demo/static/js/angular-resource.js"></script>
+    <script src="/shopping-cart-demo/static/js/angular-route.js"></script>
+    <script src="/shopping-cart-demo/static/js/app.js"></script>
+  </body>
+</html>
