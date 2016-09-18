@@ -115,6 +115,24 @@ if(!empty($_GET["action"])) {
 
     //Clear current cart
     unset($_SESSION["cart_item"]);
+
+    //Add new address to blockonomics address watcher
+    $url = 'http://localhost:8080/api/address';
+    $data = array('addr' => $new_address->address, 'tag' => $order_id);
+
+    $options = array( 
+      'http' => array(
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\n".
+        "Authorization: Bearer ".$api_key."\r\n",
+        'method'  => 'POST',
+        'content' => json_encode($data)
+      )   
+    );  
+
+    //Generate new address for this invoice
+    $context = stream_context_create($options);
+    $contents = file_get_contents($url, false, $context);
+
     echo json_encode(array("order_id" => $order_id));
     break;
 
