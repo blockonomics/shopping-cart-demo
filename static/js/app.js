@@ -4,18 +4,18 @@ service.factory('ShoppingCart', function ($resource) {
   return cart_item;
 });
 
-app = angular.module("shopping-cart-demo", ["ngRoute", "shoppingcart.services"]);
+app = angular.module("shopping-cart-demo", ["monospaced.qrcode", "ngRoute", "shoppingcart.services"]);
 
 app.config(function ($routeProvider) {
   $routeProvider
-    .when('/', {templateUrl: '/shopping-cart-demo/static/views/shoppinglist.html', controller: ShoppingListController});
+    .when('/', {templateUrl: '/shopping-cart-demo/static/views/shoppinglist.html', controller: ShoppingListController})
+    .when('/invoice', {templateUrl: '/shopping-cart-demo/static/views/invoice.html', controller: CheckoutController});
   /*
-    .when('/checkout', {templateUrl: '/views/checkout.html', controller: CheckoutController})
     .when('/status', {templateUrl: '/views/status.html', controller: StatusController});
     */
 });
 
-function ShoppingListController($scope, $rootScope, ShoppingCart) {
+function ShoppingListController($scope, $window, $location, $rootScope, ShoppingCart) {
   $scope.itemList = ShoppingCart.query({"action":"getitems"});
   $scope.cart = ShoppingCart.query({"action":"getcart"});
   $scope.total = 0;
@@ -38,4 +38,37 @@ function ShoppingListController($scope, $rootScope, ShoppingCart) {
   $scope.emptyCart = function(){
     $scope.cart = ShoppingCart.query({"action":"empty"});
   };
+
+  $scope.checkoutCart = function(){
+    ShoppingCart.query({"action":"createinvoice"}, function(data){
+      window.location.href = "/invoice?order_id==" + data.order_id;
+    }, function(data){});
+  };
+}
+
+function CheckoutController($scope, $location, $interval, $rootScope, ShoppingCart) {
+  //get order id from url
+  current_p = $location.path();
+  current_s = $location.search();
+
+  var totalProgress = 100;
+  var totalTime = 10*60; //10m
+  $scope.progress = totalProgress;
+  $scope.clock = totalTime;
+
+  $scope.tick = function() {
+    $scope.clock = $scope.clock-1;
+    $scope.progress = Math.floor($scope.clock*totalProgress/totalTime);
+
+    if($scope.progress == 0){
+      $scope.invoice = ShoppingCart.get({"action":"getinvoice", "order_id":$scope.invoice.order_id});
+      $scope.progress = totalProgress;
+      $scope.clock = totalTime;
+    }
+  };
+
+  if ( current_p == "/invoice" && typeof current_s.order_id != 'undefined'){
+    $scope.invoice = ShoppingCart.get({"action":"getinvoice", "order_id":current_s.order_id});
+    $scope.tick_interval  = $interval($scope.tick, 1000);
+  }
 }

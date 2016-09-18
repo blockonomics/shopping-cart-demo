@@ -82,10 +82,51 @@ body {
   background-color: #FFD0A6;
 }
 
-@media (max-width: 979px) {
-  body {
-    padding-top: 0px;
-  }
+.invoice-heading {
+  padding: 5px 10px;
+  font-weight:bold;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: rgba(95, 144, 80, 0.42);
+  color: #4e4e4e;
 }
 
+.invoice-heading-right {
+  float:right;
+}
+
+.invoice .progress {
+  height: 7px;
+  border-radius: 0px;
+}
+
+.invoice-amount {
+  float:left;
+  margin-bottom:15px;
+  border-right:#ccc 1px solid;
+}
+
+.invoice-status {
+  float:right;
+}
+
+.invoice-address {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  margin-top: 20px;
+  color: #4e4e4e;
+  border-radius:0px 0px 4px 4px;
+  border:none;
+  background: rgba(95, 144, 80, 0.42);
+}
+
+@media (max-width: 979px) {
+  .invoice {
+    width:100%;
+  }
+}
 
