@@ -40,9 +40,9 @@ function ShoppingListController($scope, $window, $location, $rootScope, Shopping
   };
 
   $scope.checkoutCart = function(){
-    ShoppingCart.query({"action":"createinvoice"}, function(data){
-      window.location.href = "/invoice?order_id==" + data.order_id;
-    }, function(data){});
+    ShoppingCart.get({"action":"createinvoice"}, function(order){
+      window.location.href = "/shopping-cart-demo/index.html#/invoice?order_id=" + order.order_id; 
+    });
   };
 }
 
