@@ -109,8 +109,8 @@ if(!empty($_GET["action"])) {
     }
 
     $cart_string = json_encode($current_cart);
-    $query="INSERT INTO order_table (order_id, addr, txid, status, cart, value) VALUES 
-      ('".$order_id."', '".$new_address->address."', '', 0, '".$cart_string."', ".$total_cost.")";
+    $query="INSERT INTO order_table (order_id, addr, txid, status, cart, value, bits_payed) VALUES 
+      ('".$order_id."', '".$new_address->address."', '', 0, '".$cart_string."', ".$total_cost.", 0)";
     $result = $db_conn->query($query) or die($db_conn->error.__LINE__);
 
     //Clear current cart
@@ -165,6 +165,29 @@ if(!empty($_GET["action"])) {
     } 
     else
       echo json_encode([]);
+    break;
+
+  case "callback":
+    $secret = 'Mabcdas122olkdd';
+    $txid = $_GET['txid'];
+    $value = $_GET['value'];
+    $status = $_GET['status'];
+    $addr = $_GET['addr'];
+
+    //Match secret for security
+    if ($_GET['secret'] != $secret) {
+      echo "Secret is not matching.";
+          return;
+    }
+
+    if ($status != 2) {
+      //Only accept confirmed transactions
+      return;
+    }
+
+    $query="UPDATE order_table SET status=2,txid='".$txid."',bits_payed=".$value." WHERE addr='".$addr."'";
+    $result = $db_conn->query($query) or die($db_conn->error.__LINE__);
+
     break;
   }
 }
