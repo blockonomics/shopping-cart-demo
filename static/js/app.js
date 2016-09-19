@@ -1,6 +1,6 @@
 service = angular.module("shoppingcart.services", ["ngResource"]);
 service.factory('ShoppingCart', function ($resource) {
-  var cart_item = $resource('/shopping-cart-demo/shopping_cart.php');
+  var cart_item = $resource('shopping_cart.php');
   return cart_item;
 });
 
@@ -8,8 +8,8 @@ app = angular.module("shopping-cart-demo", ["monospaced.qrcode", "ngRoute", "sho
 
 app.config(function ($routeProvider) {
   $routeProvider
-    .when('/', {templateUrl: '/shopping-cart-demo/static/views/shoppinglist.html', controller: ShoppingListController})
-    .when('/invoice', {templateUrl: '/shopping-cart-demo/static/views/invoice.html', controller: CheckoutController});
+    .when('/', {templateUrl: 'static/views/shoppinglist.html', controller: ShoppingListController})
+    .when('/invoice', {templateUrl: 'static/views/invoice.html', controller: CheckoutController});
   /*
     .when('/status', {templateUrl: '/views/status.html', controller: StatusController});
     */
@@ -41,7 +41,7 @@ function ShoppingListController($scope, $window, $location, $rootScope, Shopping
 
   $scope.checkoutCart = function(){
     ShoppingCart.get({"action":"createinvoice"}, function(order){
-      window.location.href = "/shopping-cart-demo/index.html#/invoice?order_id=" + order.order_id; 
+      window.location.href = "index.html#/invoice?order_id=" + order.order_id; 
     });
   };
 }
