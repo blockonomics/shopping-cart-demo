@@ -1,5 +1,5 @@
 <div class="form">
-  <div class="col-xs-4 invoice">
+  <div class="col-md-4 col-md-offset-4 invoice">
   <!-- heading row -->
   <div class="row">
     <div class="invoice-heading"> 
@@ -39,8 +39,8 @@
     </div>
 
     <!-- QR Code -->
-    <div class="qr-code-box">
-      <div class="qr-code">
+    <div class="row qr-code-box">
+      <div class="col-xs-5 qr-code">
         <div class="qr-enclosure">
           <qrcode data="bitcoin:{{invoice.addr}}?amount={{invoice.bits/1.0e8}}" size="320">
           <canvas class="qrcode"></canvas>
