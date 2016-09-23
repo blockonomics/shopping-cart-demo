@@ -3,7 +3,6 @@ $DB_HOST = '127.0.0.1';
 $DB_USER = 'root';
 $DB_PASS = 'root';
 $DB_NAME = 'shopping_cart_demo';
-$CALLBACK_SECRET = 'Mabcdas122olkdd';
 
 /*Blockonomics Configurations*/
 $BASE_URL = 'https://blockonomics.co';
