@@ -2,10 +2,10 @@
 Demo shopping website that uses blockonomics payments API
 
 # Requirements
-php, php-sqli and mysql-server 
+php, php-sqli and mysql-server   
 `sudo apt-get install php php-sqli mysql-server`  
-Web server supporting php like nginx, apache.
-For a simple php server you can run  
+Web server supporting php like nginx, apache.  
+For a simple php server you can run    
 `php -S localhost:8000`
 
 
