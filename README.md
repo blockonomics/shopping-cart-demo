@@ -1,11 +1,17 @@
 # Shopping-cart-demo
 Demo shopping website that uses blockonomics payments API
 
+# Requirements
+php, php-sqli and mysql-server 
+`sudo apt-get install php php-sqli mysql-server`  
+Web server supporting php like nginx, apache.
+For a simple php server you can run  
+`php -S localhost:8000`
+
+
 # Instructions
 * Clone the git repository into the ROOT of your web server.
-* [OR] Run directly with "php -S localhost:8000" in shopping-cart-demo folder
-* Put Blockonomics API Key in /www/shopping-cart-demo/php/config.php
-* Navigate to setup.php in your browser
-* http://localhost/shopping-cart-demo/php/setup.php
-* Now the database is initialized open the demo
-* http://localhost/shopping-cart-demo/index.html
+* Change the file *php/config.php* to set you db credentials, api key 
+* Run your web server
+* Navigate to shopping-cart-demo/php/setup.php in your browser (Should show __Database setup is done__)
+* Navigate to shopping-cart-demo/index.html in browser and enjoy shopping !
