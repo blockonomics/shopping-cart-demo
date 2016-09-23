@@ -3,8 +3,7 @@ Demo shopping website that uses blockonomics payments API
 
 # Instructions
 * Clone the git repository into the ROOT of your web server.
-* cd /www/shopping-cart-demo
-* chmod 755 ./ [OR] Run directly with "php -S localhost:8000" in shopping-cart-demo folder
+* [OR] Run directly with "php -S localhost:8000" in shopping-cart-demo folder
 * Put Blockonomics API Key in /www/shopping-cart-demo/php/config.php
 * Navigate to setup.php in your browser
 * http://localhost/shopping-cart-demo/php/setup.php
