@@ -19,8 +19,12 @@
         <label for="invoice-amount">Status</label>
         <div class="value ng-binding" style="margin-bottom:10px;" >
           <strong style="color: #956431;" ng-show="invoice.status == -1" >Please transfer bitcoins to given address</strong>
-          <strong style="color: #956431;" ng-show="invoice.status == 0 || invoice.status == 1" >Awaiting 2 confirmations for dispatch</strong>
-          <strong style="color: #956431;" ng-show="invoice.status >= 2" >Confirmed. Items dispatched</strong>
+          <strong style="color: #956431;" ng-show="invoice.status == 0"> Unconfirmed</strong>
+          <strong style="color: #956431;" ng-show="invoice.status == 1"> Partially Confirmed</strong>
+          <strong style="color: #956431;" ng-show="invoice.status >= 2" >Confirmed</strong>
+        </div>
+        <div class="value ng-binding" style="margin-bottom:10px;" >
+          <a style="font-weight:bold;color: #956431;" href="http://localhost:8080/api/tx?txid={{invoice.txid}}&addr={{invoice.addr}}">Transaction Receipt</a>
         </div>
       </div>
 
