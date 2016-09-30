@@ -90,15 +90,37 @@ function CheckoutController($scope, $location, $interval, $rootScope, Invoice) {
     $scope.progress = Math.floor($scope.clock*totalProgress/totalTime);
 
     if($scope.progress == 0){
-      $scope.invoice = Invoice.get({"order_id":$scope.invoice.order_id});
+      Invoice.get({"order_id":$scope.invoice.order_id}, function(data){
+        $scope.invoice = data;
+        $scope.current_cart = JSON.parse($scope.invoice.cart);
+      });
+
       $scope.progress = totalProgress;
       $scope.clock = totalTime;
     }
   };
 
   if ( current_p == "/invoice" && typeof current_s.order_id != 'undefined'){
-    $scope.invoice = Invoice.get({"order_id":current_s.order_id});
-    $scope.tick_interval  = $interval($scope.tick, 1000);
+    Invoice.get({"order_id":current_s.order_id}, function(data){
+      $scope.invoice = data;
+      $scope.current_cart = JSON.parse($scope.invoice.cart);
+      $scope.tick_interval  = $interval($scope.tick, 1000);
+
+      //Websocket
+      var ws = new WebSocket("ws://blockonomics.co/payment/" + $scope.invoice.addr + "?timestamp=" + $scope.invoice.timestamp);
+
+      ws.onmessage = function (evt) {
+        //Refresh invoice from server
+        $interval(function(){
+          Invoice.get({"order_id":$scope.invoice.order_id}, function(data){
+            $scope.invoice = data;
+            $scope.current_cart = JSON.parse($scope.invoice.cart);
+          });
+          if ($scope.tick_interval)
+            $interval.cancel($scope.tick_interval);
+        }, 5000, 1);
+      }
+    });
   }
 }
 

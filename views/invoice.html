@@ -13,40 +13,67 @@
   </div>
     <!-- Amount row -->
     <div class="row">
+
+      <div class="col-xs-12">
+        <!-- Status -->
+        <label for="invoice-amount">Status</label>
+        <div class="value ng-binding" style="margin-bottom:10px;" >
+          <strong style="color: #956431;" ng-show="invoice.status == -1" >Please transfer bitcoins to given address</strong>
+          <strong style="color: #956431;" ng-show="invoice.status == 0 || invoice.status == 1" >Awaiting 2 confirmations for dispatch</strong>
+          <strong style="color: #956431;" ng-show="invoice.status >= 2" >Confirmed. Items dispatched</strong>
+        </div>
+      </div>
+
       <div class="col-xs-7 invoice-amount">
         <label for="invoice-amount">Amount</label>
         <div class="value ng-binding">
           <strong style="color: #956431;">{{invoice.bits/1.0e8}}</strong>
-          <small>BTC</small> ⥯
+          <small>BTC</small> ⇌
           <strong style="color: #956431;">{{invoice.value}}</strong> 
           <small>USD</small>
         </div>
       </div>
 
-      <div class="col-xs-4 invoice-status">
-        <label for="invoice-amount">Status</label>
+      <div ng-hide="invoice.status == -1" class="col-xs-5 invoice-status" style="border-left:#ccc 1px solid;">
+        <label for="invoice-amount" >Recieved Amount</label>
         <div class="value ng-binding">
-          <strong style="color: #956431;" ng-show="invoice.status == 0" >Un Confirmed</strong>
-          <strong style="color: #956431;" ng-hide="invoice.status == 0" >Confirmed</strong>
+          <strong style="color: #956431;">{{invoice.bits_payed/1.0e8}}</strong>
+          <small>BTC</small> 
         </div>
       </div>
-
     </div>
 
     <!-- address-->
     <div class="row">
-      <label class="col-xs-5" style="margin-bottom:15px;" for="btn-address">Bitcoin Address</label>
+      <label ng-hide="invoice.status != -1" class="col-xs-5" style="margin-bottom:15px;" for="btn-address">Bitcoin Address</label>
+      <label ng-hide="invoice.status == -1" class="col-xs-5" style="margin-bottom:15px;" for="btn-address">Purchased Items</label>
     </div>
 
     <!-- QR Code -->
     <div class="row qr-code-box">
-      <div class="col-xs-5 qr-code">
+      <div class="col-xs-5 qr-code" ng-show="invoice.status == -1">
         <div class="qr-enclosure">
           <qrcode data="bitcoin:{{invoice.addr}}?amount={{invoice.bits/1.0e8}}" size="320">
           <canvas class="qrcode"></canvas>
           </qrcode>
         </div>
       </div>
+      <div class="col-xs-8" ng-hide="invoice.status == -1" >
+      <table class="row table invoice-table">
+        <tbody>
+          <tr ng-repeat="item in current_cart">
+            <td><strong>{{item.name}}</strong></td>
+            <td>x {{item.quantity}}</td>
+            <td>${{item.quantity*item.price}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" align=left><strong>Total:</strong>
+              <td><strong>${{invoice.value}}</strong>
+          </tr>
+        </tbody>
+      </table>	
+      </div>
+
 
     </div>
       <div class="row">

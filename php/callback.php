@@ -7,12 +7,7 @@ $value = $_GET['value'];
 $status = $_GET['status'];
 $addr = $_GET['addr'];
 
-if ($status != 2) {
-  //Only accept confirmed transactions
-  return;
-}
-
-$query="UPDATE order_table SET status=2,txid='".$txid."',bits_payed=".$value." WHERE addr='".$addr."'";
+$query="UPDATE order_table SET status='".$status."',txid='".$txid."',bits_payed=".$value." WHERE addr='".$addr."'";
 $result = $db_conn->query($query) or die($db_conn->error.__LINE__);
 
 ?>

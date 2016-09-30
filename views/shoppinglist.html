@@ -35,7 +35,7 @@
   <div class="product_hline" />
 		<div class="product-item" ng-repeat="item in itemList">
       <form method="post" ng-submit="addItem(item.code, quantity)" ng-init="quantity=1">
-        <div class="product-image"><img src="{{item.image}}" ng-cloak></div>
+        <div class="product-image"><img ng-src="{{item.image}}" ng-cloak></div>
         <div><strong>{{item.name}}</strong></div>
         <div class="product-price">${{item.price}}</div>
 			<div><input type="text" ng-model="quantity"  size="2" /><input type="submit" value="Add to cart" class="btnAddAction" /></div>

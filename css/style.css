@@ -103,7 +103,6 @@ body {
 .invoice-amount {
   float:left;
   margin-bottom:15px;
-  border-right:#ccc 1px solid;
 }
 
 .invoice-status {
@@ -122,6 +121,12 @@ body {
   border-radius:0px 0px 4px 4px;
   border:none;
   background: rgba(95, 144, 80, 0.42);
+}
+
+.invoice-table > tbody > tr > td {
+  padding:0px 0px 2px 15px;
+  border:none;
+  font-size:0.9em;
 }
 
 @media (max-width: 979px) {
