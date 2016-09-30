@@ -37,7 +37,7 @@ foreach($_SESSION["cart_item"] as $key => $value) {
 }
 
 //Total Cart value in bits
-$bits = intval(100000000.0*$total_cost/$price->price);
+$bits = intval(1.0e8*$total_cost/$price->price);
 
 $db_conn = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 $cart_string = json_encode($current_cart);
