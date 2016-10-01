@@ -16,16 +16,13 @@
 
       <div class="col-xs-12">
         <!-- Status -->
-        <label ng-show="invoice.status >=0" for="invoice-amount">Status</label>
+        <label ng-show="invoice.status >= 0" for="invoice-amount" style="margin-top:15px;" >Status</label>
         <div class="value ng-binding" style="margin-bottom:10px;" >
           <strong style="color: #956431;" ng-show="invoice.status == -1" >To
             pay, send exact amount of BTC to the given address</strong>
           <strong style="color: #956431;" ng-show="invoice.status == 0"> Unconfirmed</strong>
           <strong style="color: #956431;" ng-show="invoice.status == 1"> Partially Confirmed</strong>
           <strong style="color: #956431;" ng-show="invoice.status >= 2" >Confirmed</strong>
-        </div>
-        <div ng-show="invoice.status >=0" class="value ng-binding" style="margin-bottom:10px;" >
-          <a style="font-weight:bold;color: #956431;" href="http://www.blockonomics.co/api/tx?txid={{invoice.txid}}&addr={{invoice.addr}}">Transaction Receipt</a>
         </div>
       </div>
 
@@ -57,10 +54,13 @@
       </div>
 
       <div class="col-xs-6 invoice-status">
-        <label ng-hide="invoice.status == -1" for="invoice-amount" >Recieved Amount</label>
+        <label ng-hide="invoice.status == -1" for="invoice-amount" >Payment Details</label>
         <div ng-hide="invoice.status == -1" class="value ng-binding">
-          <strong style="color: #956431;">{{invoice.bits_payed/1.0e8}}</strong>
+          Received : <strong style="color: #956431;">{{invoice.bits_payed/1.0e8}}</strong>
           <small>BTC</small> 
+        </div>
+        <div ng-show="invoice.status >=0" class="value ng-binding" style="margin-bottom:10px;" >
+          Transaction : <a style="font-weight:bold;color: #956431;" href="http://www.blockonomics.co/api/tx?txid={{invoice.txid}}&addr={{invoice.addr}}">Receipt</a>
         </div>
     <div class="row">
       <label class="col-xs-6" style="margin-bottom:15px; margin-top:15px;" for="btn-address">Order Details</label>
