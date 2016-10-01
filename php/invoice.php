@@ -16,5 +16,16 @@ while($row= $result->fetch_assoc()) {
   $resultset[] = $row;
 }
 
-echo json_encode($resultset[0]);
+$result = $resultset[0];
+function objectify(& $v, $k) {
+  $v_decoded = json_decode($v, true);
+  if ($v_decoded) { $v = $v_decoded; }
+}
+
+if(empty($resultset[0])){
+  echo json_encode("{}");
+} else {
+  array_walk_recursive($result, 'objectify');
+  echo json_encode($result);
+}
 ?>
