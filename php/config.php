@@ -6,7 +6,7 @@ $DB_NAME = 'shopping_cart_demo';
 $CALLBACK_SECRET = 'Mabcdas122olkdd';
 
 /*Blockonomics Configurations*/
-$BASE_URL = 'http://localhost:8080';
+$BASE_URL = 'https://www.blockonomics.co';
 $NEW_ADDRESS_URL = $BASE_URL.'/api/new_address';
 $PRICE_URL = $BASE_URL.'/api/price?currency=USD';
 $API_KEY = 'RRtRe4UVBLKHuk39EaWpS94WWN3MmA4QCHRm9EDpdYs';
