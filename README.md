@@ -1,6 +1,9 @@
 # Shopping-cart-demo
 Demo shopping website that uses blockonomics payments API
 
+# Screenshots
+![Home Page](http://imgur.com/iT28CA4)
+
 # Requirements
 php, php-sqli and mysql-server   
 `sudo apt-get install php php-sqli mysql-server`      
