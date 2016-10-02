@@ -109,7 +109,7 @@ function CheckoutController($scope, $location, $interval, $rootScope, Invoice) {
       }
 
       //Websocket
-      var ws = new WebSocket("ws://blockonomics.co/payment/" + $scope.invoice.addr + "?timestamp=" + $scope.invoice.timestamp);
+      var ws = new WebSocket("wss://www.blockonomics.co/payment/" + $scope.invoice.addr + "?timestamp=" + $scope.invoice.timestamp);
 
       ws.onmessage = function (evt) {
         //Refresh invoice from server
