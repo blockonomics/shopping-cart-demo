@@ -23,3 +23,6 @@ Web server supporting php like nginx, apache. For a simple php server you can ru
 * Navigate to shopping-cart-demo/php/setup.php in your browser (Should show __Database setup is done__)
 * Navigate to shopping-cart-demo/index.html in browser and enjoy shopping !
 
+----
+All contributions are welcome. Please create a pull request and we will be
+happy to merge it in.
