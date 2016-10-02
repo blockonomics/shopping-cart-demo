@@ -2,7 +2,7 @@
 Demo shopping website that uses blockonomics payments API
 
 # Screenshots
-![Home Page](http://imgur.com/iT28CA4)
+![Home Page](http://i65.tinypic.com/2ccqwic.png)
 
 # Requirements
 php, php-sqli and mysql-server   
