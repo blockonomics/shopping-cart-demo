@@ -48,7 +48,6 @@ function ShoppingListController($scope, $window, $location, $rootScope,
   $scope.itemList = Products.query();
   $scope.cart = Cart.query();
   $scope.total = 0;
-  console.log($scope.itemList);
 
   $scope.addItem = function(code, quantity){
     $scope.total = 0;
@@ -75,7 +74,7 @@ function ShoppingListController($scope, $window, $location, $rootScope,
   };
 }
 
-function CheckoutController($scope, $location, $interval, $rootScope, Invoice) {
+function CheckoutController($scope, $location, $interval, $rootScope, Invoice, $route) {
   //get order id from url
   current_p = $location.path();
   current_s = $location.search();
@@ -94,9 +93,7 @@ function CheckoutController($scope, $location, $interval, $rootScope, Invoice) {
     $scope.progress = Math.floor($scope.clock*totalProgress/totalTime);
 
     if($scope.progress == 0){
-      $scope.invoice = Invoice.get({"order_id":$scope.invoice.order_id});
-      $scope.progress = totalProgress;
-      $scope.clock = totalTime;
+      //TODO: Show invoice expiry
     }
   };
 
@@ -112,14 +109,9 @@ function CheckoutController($scope, $location, $interval, $rootScope, Invoice) {
 
         //Websocket
         var ws = new WebSocket("wss://www.blockonomics.co/payment/" + $scope.invoice.addr + "?timestamp=" + $scope.invoice.timestamp);
-
         ws.onmessage = function (evt) {
-          //Refresh invoice from server
           $interval(function(){
-            $scope.invoice = Invoice.get({"order_id":$scope.invoice.order_id});
-
-            if ($scope.tick_interval)
-              $interval.cancel($scope.tick_interval);
+            $route.reload();
           }, 2000, 1);
         }
       }
