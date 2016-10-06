@@ -104,21 +104,24 @@ function CheckoutController($scope, $location, $interval, $rootScope, Invoice) {
     Invoice.get({"order_id":current_s.order_id}, function(data){
       $scope.invoice = data;
 
+      //Listen on websocket for payment notification
+      //After getting notification, wait for 2 seconds for server 
+      //to get callback, then refresh page
       if($scope.invoice.status == -1){
         $scope.tick_interval  = $interval($scope.tick, 1000);
-      }
 
-      //Websocket
-      var ws = new WebSocket("wss://www.blockonomics.co/payment/" + $scope.invoice.addr + "?timestamp=" + $scope.invoice.timestamp);
+        //Websocket
+        var ws = new WebSocket("wss://www.blockonomics.co/payment/" + $scope.invoice.addr + "?timestamp=" + $scope.invoice.timestamp);
 
-      ws.onmessage = function (evt) {
-        //Refresh invoice from server
-        $interval(function(){
-          $scope.invoice = Invoice.get({"order_id":$scope.invoice.order_id});
+        ws.onmessage = function (evt) {
+          //Refresh invoice from server
+          $interval(function(){
+            $scope.invoice = Invoice.get({"order_id":$scope.invoice.order_id});
 
-          if ($scope.tick_interval)
-            $interval.cancel($scope.tick_interval);
-        }, 5000, 1);
+            if ($scope.tick_interval)
+              $interval.cancel($scope.tick_interval);
+          }, 2000, 1);
+        }
       }
     });
   }
