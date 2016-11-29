@@ -60,7 +60,8 @@
           <small>BTC</small> 
         </div>
         <div ng-show="invoice.status >=0" class="value ng-binding" style="margin-bottom:10px;" >
-          Transaction : <a style="font-weight:bold;color: #956431;" href="http://www.blockonomics.co/api/tx?txid={{invoice.txid}}&addr={{invoice.addr}}">Receipt</a>
+          Transaction : <a style="font-weight:bold;color: #956431;"
+                           href="http://www.blockonomics.co/api/tx?txid={{invoice.txid}}&addr={{invoice.addr}}">{{invoice.txid |limitTo: 20}}</a>
         </div>
     <div class="row">
       <label class="col-xs-6" style="margin-bottom:15px; margin-top:15px;" for="btn-address">Order Details</label>
