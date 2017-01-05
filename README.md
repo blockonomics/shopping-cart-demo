@@ -12,7 +12,7 @@ Web server supporting php like nginx, apache. For a simple php server you can ru
 # Setup
 
 ##Blockonomics merchant setup 
-* Complete [merchant wizard](https://www.blockonomics.co/views/merchants_get_started.html)
+* Complete [merchant wizard](https://www.blockonomics.co/merchants)
 * Set [Your server_url]/shopping-cart-demo/php/callback.php?secret=[your secret] as the callback url
 * Obtain api key from Wallet Watcher > Settings
 
