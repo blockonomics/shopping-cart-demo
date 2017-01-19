@@ -43,6 +43,11 @@ app.config(function ($routeProvider) {
     .when('/status', {templateUrl: 'views/status.html', controller: StatusController});
 });
 
+app.config(function ($compileProvider) {
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|data|chrome-extension|bitcoin):/);
+  // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+});
+
 function ShoppingListController($scope, $window, $location, $rootScope, 
     Products, AddItem, RemoveItem, EmptyCart, Cart, CreateInvoice) {
   $scope.itemList = Products.query();
