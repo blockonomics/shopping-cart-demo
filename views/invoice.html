@@ -45,9 +45,11 @@
         <div class="row qr-code-box">
           <div class="col-xs-5 qr-code">
             <div class="qr-enclosure">
+              <a href="bitcoin:{{invoice.addr}}?amount={{invoice.bits/1.0e8}}">
               <qrcode data="bitcoin:{{invoice.addr}}?amount={{invoice.bits/1.0e8}}" size="220">
               <canvas class="qrcode"></canvas>
               </qrcode>
+              </a>
             </div>
           </div>
         </div>
