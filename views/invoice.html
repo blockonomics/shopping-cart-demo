@@ -16,10 +16,12 @@
 
       <div class="col-xs-12">
         <!-- Status -->
-        <label ng-show="invoice.status >= 0" for="invoice-amount" style="margin-top:15px;" >Status</label>
+        <label ng-show="invoice.status != -1" for="invoice-amount" style="margin-top:15px;" >Status</label>
         <div class="value ng-binding" style="margin-bottom:10px;" >
           <strong style="color: #956431;" ng-show="invoice.status == -1" >To
             pay, send exact amount of BTC to the given address</strong>
+          <strong style="color: #956431;" ng-show="invoice.status == -3"> Payment Expired</strong>
+          <strong style="color: #956431;" ng-show="invoice.status == -2"> Payment Error</strong>
           <strong style="color: #956431;" ng-show="invoice.status == 0"> Unconfirmed</strong>
           <strong style="color: #956431;" ng-show="invoice.status == 1"> Partially Confirmed</strong>
           <strong style="color: #956431;" ng-show="invoice.status >= 2" >Confirmed</strong>
@@ -61,7 +63,7 @@
           Received : <strong style="color: #956431;">{{invoice.bits_payed/1.0e8}}</strong>
           <small>BTC</small> 
         </div>
-        <div ng-show="invoice.status >=0" class="value ng-binding" style="margin-bottom:10px;" >
+        <div ng-show="invoice.status !=-1 " class="value ng-binding" style="margin-bottom:10px;" >
           Transaction : <a style="font-weight:bold;color: #956431;" target="_blank"
                            href="http://www.blockonomics.co/api/tx?txid={{invoice.txid}}&addr={{invoice.addr}}">{{invoice.txid |limitTo: 20}}</a>
         </div>

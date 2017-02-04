@@ -86,8 +86,6 @@ function CheckoutController($scope, $location, $interval, $rootScope, Invoice, $
 
   var totalProgress = 100;
   var totalTime = 10*60; //10m
-  $scope.progress = totalProgress;
-  $scope.clock = totalTime;
 
   $scope.getJson = function(data){
     return JSON.parse(data);
@@ -96,10 +94,13 @@ function CheckoutController($scope, $location, $interval, $rootScope, Invoice, $
   $scope.tick = function() {
     $scope.clock = $scope.clock-1;
     $scope.progress = Math.floor($scope.clock*totalProgress/totalTime);
-
-    if($scope.progress == 0){
-      //TODO: Show invoice expiry
+    if ($scope.clock < 0)
+    {
+      $scope.clock = 0;
+      //Order expired
+      $scope.invoice.status = -3;
     }
+    $scope.progress = Math.floor($scope.clock*totalProgress/totalTime);
   };
 
   if ( current_p == "/invoice" && typeof current_s.order_id != 'undefined'){
@@ -107,11 +108,16 @@ function CheckoutController($scope, $location, $interval, $rootScope, Invoice, $
       $scope.invoice = data;
 
       //Listen on websocket for payment notification
-      //After getting notification, wait for 2 seconds for server 
-      //to get callback, then refresh page
+      //After getting notification,  refresh page
       if($scope.invoice.status == -1){
+        $scope.clock = $scope.invoice.timestamp + totalTime - Math.floor(Date.now() / 1000); 
+        //Mark order as expired if we ran out of time
+        if ($scope.clock < 0)
+        {
+          $scope.invoice.status = -3;
+          return;
+        }
         $scope.tick_interval  = $interval($scope.tick, 1000);
-
         //Websocket
         var ws = new WebSocket("wss://www.blockonomics.co/payment/" + $scope.invoice.addr + "?timestamp=" + $scope.invoice.timestamp);
         ws.onmessage = function (evt) {
