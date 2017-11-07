@@ -6,7 +6,7 @@
 
 .card {
   display: inline-block;
-  max-width: 300px;
+  width: 300px;
   margin: 10px;
 }
 
