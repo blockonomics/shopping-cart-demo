@@ -1,22 +1,17 @@
-body {
-  padding-top: 60px;
+#shopping-cart {
+  width: 20rem;
+  flex: none;
+  margin: 0 auto;
 }
 
-.navbar {
-  background: #2C3E50;
-}
-
-#shopping-cart table {
-  width:100%;
-  background-color:#F0F0F0;
-}
-
-#shopping-cart table td{
-  background-color:#FFFFFF;
+.card {
+  display: inline-block;
+  max-width: 300px;
+  margin: 10px;
 }
 
 .product-image {
-  height:100px;
+  height: 100px;
 }
 
 .cart_hline {
@@ -24,49 +19,40 @@ body {
 }
 
 .product_hline {
-  border-top: #F08426 2px solid;
+  border-top: #f08426 2px solid;
 }
 
-.product-item {  
-  float:left;  
-  background: rgba(44, 62, 80, 0.17);  
-  margin:15px 30px 15px 0px;  
-  border-radius:5px;
-  padding:5px;
+.product-item {
+  float: left;
+  background: rgba(44, 62, 80, 0.17);
+  margin: 15px 30px 15px 0px;
+  border-radius: 5px;
+  padding: 5px;
 }
-.product-item div{
-  text-align:center;  
-  margin:10px;
+.product-item div {
+  text-align: center;
+  margin: 10px;
 }
 .product-price {
-  color:#F08426;
+  color: #f08426;
 }
 
 .txt-heading {
   padding: 5px 10px;
-  font-size:1.1em;
-  font-weight:bold;
-  color:#999;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #999;
   width: 100px;
   border-top-left-radius: 2px;
   border-top-right-radius: 30px;
 }
 
-#shopping-cart {
-  margin-bottom:30px;
-}
-
-#shopping-cart .txt-heading {
-  width: 160px;
-  background-color: #D3F5B8;
-}
-
 .btnAddAction {
-  background-color:#79b946;
-  border:0;
-  padding:3px 10px;
-  color:#FFF;
-  margin-left:1px;
+  background-color: #79b946;
+  border: 0;
+  padding: 3px 10px;
+  color: #fff;
+  margin-left: 1px;
 }
 
 .cart-item {
@@ -74,17 +60,9 @@ body {
   padding: 10px;
 }
 
-#product-grid {
-  margin-bottom:30px;
-}
-
-#product-grid .txt-heading {
-  background-color: #FFD0A6;
-}
-
 .invoice-heading {
   padding: 5px 10px;
-  font-weight:bold;
+  font-weight: bold;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   background: rgba(95, 144, 80, 0.42);
@@ -92,7 +70,7 @@ body {
 }
 
 .invoice-heading-right {
-  float:right;
+  float: right;
 }
 
 .invoice .progress {
@@ -101,12 +79,12 @@ body {
 }
 
 .invoice-amount {
-  float:left;
-  margin-bottom:15px;
+  float: left;
+  margin-bottom: 15px;
 }
 
 .invoice-status {
-  float:right;
+  float: right;
 }
 
 .invoice-address {
@@ -118,20 +96,23 @@ body {
   line-height: 1.42857143;
   margin-top: 20px;
   color: #4e4e4e;
-  border-radius:0px 0px 4px 4px;
-  border:none;
+  border-radius: 0px 0px 4px 4px;
+  border: none;
   background: rgba(95, 144, 80, 0.42);
 }
 
 .invoice-table > tbody > tr > td {
-  padding:0px 0px 2px 15px;
-  border:none;
-  font-size:0.9em;
+  padding: 0px 0px 2px 15px;
+  border: none;
+  font-size: 0.9em;
 }
 
 @media (max-width: 979px) {
+  .card-container {
+    text-align: center;
+  }
+
   .invoice {
-    width:100%;
+    width: 100%;
   }
 }
-

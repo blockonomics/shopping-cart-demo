@@ -1,4 +1,4 @@
-<div id="shopping-cart">
+<!-- <div id="shopping-cart">
 <div class="txt-heading"> 
 <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
 </div>
@@ -30,15 +30,84 @@
 </table>		
 </div>
 
-<div id="product-grid">
-	<div class="txt-heading">Products</div>
-  <div class="product_hline" />
-		<div class="product-item" ng-repeat="item in itemList">
-      <form method="post" ng-submit="addItem(item.code, quantity)" ng-init="quantity=1">
-        <div class="product-image"><img ng-src="{{item.image}}" ng-cloak></div>
-        <div><strong>{{item.name}}</strong></div>
-        <div class="product-price">${{item.price}}</div>
-			<div><input type="text" ng-model="quantity"  size="2" /><input type="submit" value="Add to cart" class="btnAddAction" /></div>
-			</form>
-		</div>
+<div id="product-grid" class="column">
+    <div class="txt-heading">Products</div>
+    <div class="product_hline" />
+      <div class="product-item" ng-repeat="item in itemList">
+        <form method="post" ng-submit="addItem(item.code, quantity)" ng-init="quantity=1">
+          <div class="product-image"><img ng-src="{{item.image}}" ng-cloak></div>
+          <div><strong>{{item.name}}</strong></div>
+          <div class="product-price">${{item.price}}</div>
+        <div><input type="text" ng-model="quantity"  size="2" /><input type="submit" value="Add to cart" class="btnAddAction" /></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+-->
+
+<div class="columns">
+  <div id="product-grid" class="column container">
+    <h1 class="title">Products</h1>
+    <hr>
+    <div class="card-container">
+
+      <div class="card" ng-repeat="item in itemList">
+        <header class="card-header">
+          <p class="card-header-title">
+            {{item.name}}
+          </p>
+        </header>
+
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="{{item.image}}" alt="Placeholder image">
+          </figure>
+        </div>
+
+        <div class="card-content">
+          <div class="content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+            <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+            <br>
+            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+          </div>
+        </div>
+
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item">Save</a>
+          <a href="#" class="card-footer-item">Edit</a>
+          <a href="#" class="card-footer-item">Delete</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <div id="shopping-cart" class="column">
+    <nav class="panel">
+      <p class="panel-heading">
+        <i class="fa fa-shopping-cart"></i>
+        &nbsp;Cart
+      </p>
+
+      <p class="panel-block" ng-repeat="item in cart">
+        <span class="panel-icon">
+          <i class="fa fa-book"></i>
+        </span>
+        {{item.name}} - ${{item.price}} x {{item.quantity}}
+      </p>
+
+      <div class="panel-block">
+        <button type="button" ng-click="checkoutCart()" class="button is-link is-success is-outlined is-fullwidth">
+          Checkout
+        </button>
+      </div>
+
+      <div class="panel-block">
+        <button type="button" ng-click="emptyCart()" class="button is-link is-danger is-outlined is-fullwidth">
+          Empty Cart
+        </button>
+      </div>
+    </nav>
+  </div>
 </div>
