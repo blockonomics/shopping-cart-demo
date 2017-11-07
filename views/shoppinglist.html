@@ -52,7 +52,7 @@
     <hr>
     <div class="card-container">
 
-      <div class="card" ng-repeat="item in itemList">
+      <div class="card" ng-repeat="item in itemList" ng-init="quantity=1">
         <header class="card-header">
           <p class="card-header-title">
             {{item.name}}
@@ -68,15 +68,21 @@
         <div class="card-content">
           <div class="content">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-            <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
             <br>
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            <br>
+            <span class="has-text-info">${{item.price}}</span>
+          </div>
+          <div class="field has-addons">
+            <div class="control">
+              <input class="input" type="text" ng-model="quantity">
+            </div>
+            <div class="control">
+              <a class="button is-info" ng-click="addItem(item.code, quantity)">
+                Add to Cart
+              </a>
+            </div>
           </div>
         </div>
-
-        <footer class="card-footer">
-          <a href="#" class="card-footer-item">Add to cart</a>
-        </footer>
       </div>
     </div>
   </div>
