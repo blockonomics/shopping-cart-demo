@@ -74,10 +74,14 @@
           </div>
           <div class="field has-addons">
             <div class="control">
-              <input class="input" type="text" ng-model="quantity">
+              <input class="input" type="text" size="2" ng-model="quantity">
             </div>
             <div class="control">
               <a class="button is-info" ng-click="addItem(item.code, quantity)">
+                <span class="icon is-small">
+                  <i class="fa fa-cart-plus"></i>
+                </span>
+                &nbsp;
                 Add to Cart
               </a>
             </div>
@@ -94,11 +98,15 @@
         &nbsp;Cart
       </p>
 
-      <p class="panel-block" ng-repeat="item in cart">
+      <p class="panel-block" ng-repeat="item in cart" ng-init="sum(item.price*item.quantity)">
         <span class="panel-icon">
-          <i class="fa fa-book"></i>
+          <i class="fa fa-plus"></i>
         </span>
         {{item.name}} - ${{item.price}} x {{item.quantity}}
+      </p>
+
+      <p class="panel-block">
+        Total: ${{total}}
       </p>
 
       <div class="panel-block">
