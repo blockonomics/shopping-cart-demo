@@ -10,12 +10,27 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <nav class="navbar has-shadow">
-      <div class="container">
-        <div class="navbar-menu">
+    <nav class="navbar has-shadow" role="navigation">
+      <div class="navbar-brand">
+        <h4 class="title is-4 navbar-item">Shopping Cart Demo</h4>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start">
           <a href="/shopping-cart-demo" class="navbar-item">Products</a>
           <a href="#/status" class="navbar-item">Order Status</a>
-          <a href="https://github.com/blockonomics/shopping-cart-demo" class="navbar-item">Complete source code</a>
+        </div>
+
+        <div class="navbar-end">
+          <div class="field navbar-item">
+            <p class="control">
+              <a class="button is-link" href="https://github.com/blockonomics/shopping-cart-demo">
+                <span class="icon">
+                  <i class="fa fa-github"></i>
+                </span>
+                <span>Complete Source Code</span>
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </nav>
