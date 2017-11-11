@@ -5,40 +5,44 @@
     <title>Shopping Cart - Using blockonomics API</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bulma.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
-
   <body>
-<nav class="navbar navbar-fixed-top navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#/" style="color: lightgray;">Shopping Cart Demo</a>
-    </div>
-<div class="col-md-4 center-block">
-  <a href="#/status" class="btn btn-primary" style="margin-top:7px;" >Order Status</a>
-</div>
-<div class="collapse navbar-collapse" id="navbar-collapse"><!-- Collect the nav links and other content for toggling -->
-        <ul class="nav navbar-nav navbar-right"><!-- Align to the right nav links, forms and other content -->
-          <li>
-<div class="col-md-4 center-block">
-  <a href="https://github.com/blockonomics/shopping-cart-demo" class="btn btn-primary" style="margin-top:7px;" >Complete source code</a>
-</div>
-</li>
-        </ul>
+    <nav class="navbar has-shadow" role="navigation">
+      <div class="navbar-brand">
+        <h4 class="title is-4 navbar-item">Shopping Cart Demo</h4>
       </div>
-    </ul>
-  </div>
-</nav>
-    <div class="container" ng-view>
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <a href="/shopping-cart-demo" class="navbar-item">Products</a>
+          <a href="#/status" class="navbar-item">Order Status</a>
+        </div>
+
+        <div class="navbar-end">
+          <div class="field navbar-item">
+            <p class="control">
+              <a class="button is-link" href="https://github.com/blockonomics/shopping-cart-demo">
+                <span class="icon">
+                  <i class="fa fa-github"></i>
+                </span>
+                <span>Complete Source Code</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="section" ng-view>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+
     <script src="js/angular.js"></script>
     <script src="js/angular-resource.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/vendors.min.js"></script>
     <script src="js/angular-qrcode.js"></script>
+    <script src="js/vendors.min.js"></script>
   </body>
 </html>

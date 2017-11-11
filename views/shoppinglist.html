@@ -1,44 +1,77 @@
-<div id="shopping-cart">
-<div class="txt-heading"> 
-<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
-</div>
-<div class="cart_hline" />
-<table class="table">
-<tbody>
-<tr ng-repeat="item in cart">
-  <td>
-    <strong>{{item.name}}</strong></td>
-  <td>{{item.code}}</td>
-  <td>${{item.price}} x {{item.quantity}}</td>
-  <td ng-init="sum(item.price*item.quantity)" >${{item.price * item.quantity}}</td>
-  <td>
-    <button type="button" ng-click="removeItem(item.code)" class="btn btn-link btn-xs">
-      <span class="glyphicon glyphicon-trash"> </span>
-    </button>
-  </td>
+<div class="columns">
+  <div id="product-grid" class="column container">
+    <h1 class="title">Products</h1>
+    <hr>
+    <div class="card-container">
 
-</tr>
-<tr>
-  <td colspan="3" align=left><strong>Total:</strong>
-  <td><strong>${{total}}</strong>
-  <td>
-     <button type="button" ng-click="checkoutCart()" style="border:none;" class="btn btn-success btn-sm">Checkout</button>
-     <button type="button" ng-click="emptyCart()" style="border:none;" class="btn btn-danger btn-sm">Empty Cart</button>
-</td>
-</tr>
-</tbody>
-</table>		
-</div>
+      <div class="card" ng-repeat="item in itemList" ng-init="quantity=1">
+        <header class="card-header">
+          <p class="card-header-title">
+            {{item.name}}
+          </p>
+        </header>
 
-<div id="product-grid">
-	<div class="txt-heading">Products</div>
-  <div class="product_hline" />
-		<div class="product-item" ng-repeat="item in itemList">
-      <form method="post" ng-submit="addItem(item.code, quantity)" ng-init="quantity=1">
-        <div class="product-image"><img ng-src="{{item.image}}" ng-cloak></div>
-        <div><strong>{{item.name}}</strong></div>
-        <div class="product-price">${{item.price}}</div>
-			<div><input type="text" ng-model="quantity"  size="2" /><input type="submit" value="Add to cart" class="btnAddAction" /></div>
-			</form>
-		</div>
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="{{item.image}}" alt="Placeholder image">
+          </figure>
+        </div>
+
+        <div class="card-content">
+          <div class="content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+            <br>
+            <br>
+            <span class="has-text-info">${{item.price}}</span>
+          </div>
+          <div class="field has-addons">
+            <div class="control">
+              <input class="input" type="text" size="2" ng-model="quantity">
+            </div>
+            <div class="control">
+              <a class="button is-info" ng-click="addItem(item.code, quantity)">
+                <span class="icon is-small">
+                  <i class="fa fa-cart-plus"></i>
+                </span>
+                &nbsp;
+                Add to Cart
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="shopping-cart" class="column">
+    <nav class="panel">
+      <p class="panel-heading">
+        <i class="fa fa-shopping-cart"></i>
+        &nbsp;Cart
+      </p>
+
+      <p class="panel-block" ng-repeat="item in cart" ng-init="sum(item.price*item.quantity)">
+        <span class="panel-icon">
+          <i class="fa fa-plus"></i>
+        </span>
+        {{item.name}} - ${{item.price}} x {{item.quantity}}
+      </p>
+
+      <p class="panel-block">
+        Total: ${{total}}
+      </p>
+
+      <div class="panel-block">
+        <button type="button" ng-click="checkoutCart()" class="button is-link is-success is-outlined is-fullwidth">
+          Checkout
+        </button>
+      </div>
+
+      <div class="panel-block">
+        <button type="button" ng-click="emptyCart()" class="button is-link is-danger is-outlined is-fullwidth">
+          Empty Cart
+        </button>
+      </div>
+    </nav>
+  </div>
 </div>
