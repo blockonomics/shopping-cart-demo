@@ -1,8 +1,10 @@
-<div class="form">
-  <div class="col-md-4 col-md-offset-4 invoice">
-      <div class="row">
-        <input type="text" style="border-radius:4px;width:200px;height: 34px;border: #ccc 2px solid;" ng-value="order_id" ng-model="order_id">
-        <button type="button" ng-click="checkStatus()" style="border:none;margin-bottom: 3px;margin-left: 5px;height: 34px;" class="btn btn-success btn-sm"><strong>Check Status</strong></button>
-      </div>
-  </div>
-</div>
+<form class="form status-form">
+	<div class="field has-addons">
+	    <p class="control">
+	    	<input type="text" class="input" ng-value="order_id" ng-model="order_id" placeholder="Order ID">
+	    </p>
+	    <p class="control">
+	    	<a href="" ng-click="checkStatus()" class="button is-info">Check Status</a>
+	    </p>
+	</div>
+</form>

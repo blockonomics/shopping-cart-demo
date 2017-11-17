@@ -18,6 +18,10 @@ input {
   max-width: 1000px;
 }
 
+.status-form {
+  text-align: center;
+}
+
 @media (max-width: 979px) {
   .card-container {
     text-align: center;
