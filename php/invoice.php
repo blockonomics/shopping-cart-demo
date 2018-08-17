@@ -8,8 +8,16 @@ if(empty($_GET["order_id"])){
 $order_id = $_GET["order_id"];
 
 $db_conn = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
-$query="SELECT * FROM order_table WHERE order_id='".$order_id."'";
-$result = $db_conn->query($query) or die($db_conn->error.__LINE__);
+
+if ($db_conn->connect_error) {
+    die("Connection failed: " . $db_conn->connect_error);
+}
+
+$query=$db_conn->prepare("SELECT * FROM order_table WHERE order_id=?");
+$query->bind_param("s", $order_id);
+
+$query->execute();
+$result = $query->get_result();
 
 $resultset = [];
 while($row= $result->fetch_assoc()) {
