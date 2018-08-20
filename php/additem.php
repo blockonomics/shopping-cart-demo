@@ -4,9 +4,16 @@ include_once("include.php");
 include_once("config.php");
 $db_conn = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 
+if ($db_conn->connect_error) {
+    die("Connection failed: " . $db_conn->connect_error);
+}
+
 if(!empty($_GET["quantity"])) {
-    $query = "SELECT * FROM product_table WHERE code='" . $_GET["code"] . "'";
-    $result = $db_conn->query($query);
+    $query=$db_conn->prepare("SELECT * FROM product_table WHERE code=?");
+    $query->bind_param("s", $_GET["code"]);
+
+    $query->execute();
+    $result = $query->get_result();
 
     while($row= $result->fetch_assoc()) {
         $productByCode[] = $row;
