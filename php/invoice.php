@@ -1,4 +1,5 @@
 <?php
+include_once("include.php");
 include_once("config.php");
 
 if(empty($_GET["order_id"])){
@@ -17,10 +18,10 @@ $query=$db_conn->prepare("SELECT * FROM order_table WHERE order_id=?");
 $query->bind_param("s", $order_id);
 
 $query->execute();
-$result = $query->get_result();
+$query->store_result();
 
 $resultset = [];
-while($row= $result->fetch_assoc()) {
+while($row=fetchAssocStatement($query)) {
   $resultset[] = $row;
 }
 

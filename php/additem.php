@@ -13,9 +13,9 @@ if(!empty($_GET["quantity"])) {
     $query->bind_param("s", $_GET["code"]);
 
     $query->execute();
-    $result = $query->get_result();
+    $query->store_result();
 
-    while($row= $result->fetch_assoc()) {
+    while($row=fetchAssocStatement($query)) {
         $productByCode[] = $row;
     }
 

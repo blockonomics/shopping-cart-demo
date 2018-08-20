@@ -1,4 +1,5 @@
 <?php
+include_once("include.php");
 include_once("config.php");
 $db_conn = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 
@@ -21,9 +22,9 @@ $query=$db_conn->prepare("SELECT status, bits,timestamp FROM order_table WHERE a
 $query->bind_param("s", $addr);
 
 $query->execute();
-$result = $query->get_result();
+$query->store_result();
 
-$row= $result->fetch_assoc();
+$row=fetchAssocStatement($query);
 if ($row["status"]<-1){
   //payment already in error/expired, do nothing
   return;
