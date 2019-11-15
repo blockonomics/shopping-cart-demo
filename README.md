@@ -1,6 +1,10 @@
 # Shopping-cart-demo
 Demo shopping website that uses blockonomics payments API, hosted at http://shopping.blockonomics.co 
 
+# API Docs
+- [Developer Guide](https://blog.blockonomics.co/bitcoin-payments-api-101-bd0c1a5a1503)
+- [Reference API Documentation](https://www.blockonomics.co/views/api.html#payments)
+
 # Requirements
 php, php-sqli and mysql-server   
 `sudo apt-get install php php-sqli mysql-server`      
